@@ -1,0 +1,15 @@
+{
+  "name": "internal-binding",
+  "version": "0.1.0",
+  "description": "Node.js interanl bindings, accessible from user land",
+  "keywords": ["node", "internal", "bindings"],
+  "license": "MIT",
+  "author": {
+    "name": "Alex Masterov",
+    "email": "alex.masterow@gmail.com"
+  },
+  "main": "./src/index.js",
+  "engines": {
+    "node": ">=8.3.0"
+  }
+}
