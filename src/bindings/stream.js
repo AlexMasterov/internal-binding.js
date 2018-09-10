@@ -1,6 +1,6 @@
 'use strict';
 
-const { Socket, _createServerHandle } = require('net');
+const { Socket } = require('net');
 
 function extractStream() {
   let WriteWrap;
