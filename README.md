@@ -10,9 +10,24 @@ npm install internal-binding
 
 ## Usage
 ```javascript
-const { Hash, Hmac, Sign, Verify, CryptoConstants } = require('internal-binding').Crypto;
-const { Pipe, PipeConnectWrap, PipeConstants } = require('internal-binding').Pipe;
+const {
+  DiffieHellman,
+  DiffieHellmanGroup,
+  ECDH,
+  Hash,
+  Hmac,
+  Sign,
+  Verify,
+  CryptoConstants,
+} = require('internal-binding').Crypto;
+
 const { WriteWrap } = require('internal-binding').Stream;
+
+const {
+  Pipe,
+  PipeConnectWrap,
+  PipeConstants,
+} = require('internal-binding').Pipe;
 
 // Some wraps requires asynchronous context!
 (async () => {

@@ -1,6 +1,14 @@
 'use strict';
 
-const { Hash, Hmac, Sign, Verify } = require('crypto');
+const {
+  DiffieHellman,
+  DiffieHellmanGroup,
+  ECDH,
+  Hash,
+  Hmac,
+  Sign,
+  Verify
+} = require('crypto');
 
 const CryptoConstants = {
   OPENSSL_VERSION_NUMBER: 269484191,
@@ -72,6 +80,9 @@ const CryptoConstants = {
 };
 
 module.exports = {
+  DiffieHellman: new DiffieHellman(4)._handle.constructor,
+  DiffieHellmanGroup: new DiffieHellmanGroup('modp1')._handle.constructor,
+  ECDH: new ECDH('secp521r1')._handle.constructor,
   Hash: new Hash('SHA1')._handle.constructor,
   Hmac: new Hmac('SHA256', 'a secret')._handle.constructor,
   Sign: new Sign('SHA256')._handle.constructor,
