@@ -26,6 +26,7 @@ function extractPipe() {
     PipeConstants: {
       SOCKET: 0,
       SERVER: 1,
+      IPC: 2,
     },
   };
 }
