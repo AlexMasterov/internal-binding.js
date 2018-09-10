@@ -2,7 +2,7 @@
 
 const { randomBytes } = require('crypto');
 
-const Providers = {
+const AsyncProviders = {
   NONE: 0,
   DNSCHANNEL: 1,
   FILEHANDLE: 2,
@@ -51,10 +51,10 @@ function extractAsync() {
     randomBytes(0, function () {
       resolve({
         AsyncWrap: this.constructor,
-        Providers,
+        AsyncProviders,
       });
     });
   });
 }
 
-module.exports = extractAsync;
+module.exports = extractAsync();

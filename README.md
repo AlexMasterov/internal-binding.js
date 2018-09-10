@@ -24,6 +24,6 @@ const { WriteWrap } = require('internal-binding').Stream;
 
   const {
     AsyncWrap,
-    Providers,
+    AsyncProviders,
   } = await require('internal-binding').Async;
 })();
