@@ -4,3 +4,4 @@ exports.Crypto = require('./bindings/crypto');
 
 // Async
 exports.Tcp = require('./bindings/tcp');
+exports.Async = require('./bindings/async');

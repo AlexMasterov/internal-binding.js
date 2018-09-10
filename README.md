@@ -14,11 +14,16 @@ const { Hash, Hmac } = require('internal-binding').Crypto;
 const { WriteWrap } = require('internal-binding').Stream;
 const { Pipe, PipeConnectWrap, PipeConstants } = require('internal-binding').Pipe;
 
-// TCPWrap requires asynchronous context!
+// Some wraps requires asynchronous context!
 (async () => {
   const {
     TCP,
     TCPConnectWrap,
-    TCPConstants
+    TCPConstants,
   } = await require('internal-binding').Tcp;
+
+  const {
+    AsyncWrap,
+    Providers,
+  } = await require('internal-binding').Async;
 })();
