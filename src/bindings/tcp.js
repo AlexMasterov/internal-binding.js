@@ -4,7 +4,7 @@ const { Socket, _createServerHandle } = require('net');
 
 function extractTcp() {
   return new Promise((resolve, reject) => {
-    const handle = _createServerHandle('127.0.0.1', 80);
+    const handle = _createServerHandle('0.0.0.0', 1337);
 
     handle.connect = function (req, address, port) {
       resolve({
@@ -22,7 +22,7 @@ function extractTcp() {
     const socket = new Socket({ handle });
 
     socket.on('error', err => reject(err));
-    socket.connect({ port: 80, host: '127.0.0.1' });
+    socket.connect({ port: 1337, host: '0.0.0.0' });
   });
 }
 

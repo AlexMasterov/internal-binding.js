@@ -7,8 +7,21 @@ const {
   Hash,
   Hmac,
   Sign,
-  Verify
+  Verify,
 } = require('crypto');
+
+const isNode11GT = process.version[3] === '.'
+  && +(process.version[1] + process.version[2]) > 10;
+
+function getCtor(instance) {
+  let handle = '_handle';
+  if (isNode11GT) {
+    handle = Object.getOwnPropertySymbols(instance)
+      .find(symbol => symbol.toString().slice(7, -1) === 'kHandle');
+  }
+
+  return instance[handle].constructor;
+}
 
 const CryptoConstants = {
   OPENSSL_VERSION_NUMBER: 269484191,
@@ -76,16 +89,16 @@ const CryptoConstants = {
   POINT_CONVERSION_HYBRID: 6,
   defaultCoreCipherList: 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA',
   defaultCipherList: 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA',
-  INT_MAX: 2147483647
+  INT_MAX: 2147483647,
 };
 
-module.exports = {
-  DiffieHellman: new DiffieHellman(4)._handle.constructor,
-  DiffieHellmanGroup: new DiffieHellmanGroup('modp1')._handle.constructor,
-  ECDH: new ECDH('secp521r1')._handle.constructor,
-  Hash: new Hash('SHA1')._handle.constructor,
-  Hmac: new Hmac('SHA256', 'a secret')._handle.constructor,
-  Sign: new Sign('SHA256')._handle.constructor,
-  Verify: new Verify('SHA256')._handle.constructor,
-  CryptoConstants,
+module.exports = class LazyCrypto {
+  static get DiffieHellman() { return getCtor(new DiffieHellman(4)); }
+  static get DiffieHellmanGroup() { return getCtor(new DiffieHellmanGroup('modp1')); }
+  static get ECDH() { return getCtor(new ECDH('secp521r1')); }
+  static get Hash() { return getCtor(new Hash('SHA1')); }
+  static get Hmac() { return getCtor(new Hmac('SHA256', 'a secret')); }
+  static get Sign() { return getCtor(new Sign('SHA256')); }
+  static get Verify() { return getCtor(new Verify('SHA256')); }
+  static get CryptoConstants() { return CryptoConstants; }
 };
