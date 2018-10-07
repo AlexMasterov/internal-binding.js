@@ -17,7 +17,7 @@ function getCtor(instance) {
   let handle = '_handle';
   if (isNode11GT) {
     handle = Object.getOwnPropertySymbols(instance)
-      .find(symbol => symbol.toString().slice(7, -1) === 'kHandle');
+      .find(symbol => symbol.toString().indexOf('kHandle') !== -1);
   }
 
   return instance[handle].constructor;

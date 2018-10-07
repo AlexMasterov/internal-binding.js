@@ -17,7 +17,7 @@ describe('Bindings', () => {
     });
     it('DiffieHellmanGroup', () => {
       const exports = bindings.Crypto;
-      assertCtorName(exports.DiffieHellman, '');
+      assertCtorName(exports.DiffieHellmanGroup, '');
     });
     it('ECDH', () => {
       const exports = bindings.Crypto;
