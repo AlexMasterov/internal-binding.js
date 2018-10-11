@@ -59,6 +59,13 @@ describe('Bindings', () => {
     });
   });
 
+  describe('process_wrap', () => {
+    it('Process', () => {
+      const exports = bindings.Process;
+      assertCtorName(exports.Process, 'Process');
+    });
+  });
+
   describe('tcp_wrap (async)', () => {
     it('TCP', async () => {
       const exports = await bindings.Tcp;

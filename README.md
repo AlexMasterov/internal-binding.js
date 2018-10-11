@@ -27,6 +27,7 @@ const {
 } = require('internal-binding').Crypto;
 
 const { WriteWrap } = require('internal-binding').Stream;
+const { Process } = require('internal-binding').Process;
 
 const {
   Pipe,
