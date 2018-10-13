@@ -92,7 +92,7 @@ const CryptoConstants = {
   INT_MAX: 2147483647,
 };
 
-module.exports = class LazyCrypto {
+module.exports = class Crypto {
   static get DiffieHellman() { return getCtor(new DiffieHellman(4)); }
   static get DiffieHellmanGroup() { return getCtor(new DiffieHellmanGroup('modp1')); }
   static get ECDH() { return getCtor(new ECDH('secp521r1')); }
