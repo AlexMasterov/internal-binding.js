@@ -24,6 +24,9 @@
   "engines": {
     "node": ">=10.5.0"
   },
+  "directories": {
+    "test": "test/"
+  },
   "scripts": {
     "test": "nyc mocha test/*.test.js",
     "test-report": "nyc --reporter=html --reporter=text mocha test/*.test.js",
@@ -32,10 +35,7 @@
   "devDependencies": {
     "coveralls": "3.0.2",
     "mocha": "5.2.0",
-    "nyc": "13.0.1"
-  },
-  "directories": {
-    "test": "test/"
+    "nyc": "13.1.0"
   },
   "nyc": {
     "cache": false,
